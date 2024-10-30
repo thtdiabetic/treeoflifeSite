@@ -1,0 +1,188 @@
+<!DOCTYPE html> <!-- Tells the browser this is an HTML5 document -->
+<html lang="en"> <!-- Start of HTML document, set to English language -->
+<head>
+    <!-- Basic settings for the webpage -->
+    <meta charset="UTF-8"> <!-- Ensures proper text encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page mobile-friendly -->
+    <title>Natural Spirits & Garden Wisdom</title> <!-- Sets the browser tab title -->
+    <style>
+        /* CSS Styles start here. CSS controls how the page looks */
+        
+        /* Reset default browser styles for consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Main text and background settings for the whole page */
+        body {
+            font-family: 'Open Sans', sans-serif; /* Sets the font type */
+            line-height: 1.6; /* Controls line spacing */
+            background-color: #f4f1ea; /* Light beige background color */
+            color: #2c3e50; /* Dark blue-grey text color */
+        }
+
+        /* Hero image section at the top of the page */
+        .header {
+            /* Creates a dark overlay on top of the background image */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/forest-spirit.jpg');
+            background-size: cover; /* Makes image cover the whole area */
+            height: 100vh; /* Makes header full screen height */
+            /* Centers content both vertically and horizontally */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        /* Navigation bar styling */
+        .nav {
+            position: fixed; /* Keeps nav bar stuck to top of screen */
+            width: 100%;
+            padding: 1rem; /* Adds space inside the nav bar */
+            background-color: rgba(255,255,255,0.9); /* Semi-transparent white background */
+        }
+
+        /* Navigation menu list styling */
+        .nav ul {
+            display: flex; /* Makes menu items horizontal */
+            justify-content: center; /* Centers menu items */
+            list-style: none; /* Removes bullet points */
+        }
+
+        /* Individual menu items */
+        .nav ul li {
+            margin: 0 1.5rem; /* Adds space between menu items */
+        }
+
+        /* Menu link styling */
+        .nav a {
+            color: #2c3e50;
+            text-decoration: none; /* Removes underline from links */
+            font-weight: 600; /* Makes text slightly bold */
+        }
+
+        /* Main content section styling */
+        .section {
+            padding: 5rem 2rem; /* Adds space around sections */
+            max-width: 1200px; /* Limits width on large screens */
+            margin: 0 auto; /* Centers content horizontally */
+        }
+
+        /* Card grid layout */
+        .grid {
+            display: grid;
+            /* Creates responsive columns that adjust based on screen size */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; /* Adds space between grid items */
+            margin-top: 2rem;
+        }
+
+        /* Individual card styling */
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px; /* Rounds corners */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Adds subtle shadow */
+        }
+
+        /* Mobile-friendly adjustments */
+        @media (max-width: 768px) {
+            /* When screen is smaller than 768px */
+            .nav ul {
+                flex-direction: column; /* Stacks menu items vertically */
+                align-items: center;
+            }
+            
+            .nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body> <!-- The visible content of the webpage starts here -->
+    <!-- Navigation Menu -->
+    <nav class="nav">
+        <ul>
+            <!-- Each link jumps to a specific section of the page using ID references -->
+            <li><a href="#home">Home</a></li>
+            <li><a href="#spirits">Nature Spirits</a></li>
+            <li><a href="#garden">Sacred Garden</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#wisdom">Ancient Wisdom</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero section with background image -->
+    <header class="header" id="home">
+        <div>
+            <h1>Connect with Nature's Spirit</h1>
+            <p>Discover the ancient wisdom of earth spirits and sacred gardening</p>
+        </div>
+    </header>
+
+    <!-- Content sections with cards -->
+    <section class="section" id="spirits">
+        <h2>Nature Spirits</h2>
+        <div class="grid"> <!-- Grid layout for cards -->
+            <div class="card">
+                <h3>Tree Spirits</h3>
+                <p>Ancient guardians of the forest, connecting earth and sky</p>
+            </div>
+            <div class="card">
+                <h3>Mother Earth</h3>
+                <p>The divine feminine energy that nurtures all life</p>
+            </div>
+            <div class="card">
+                <h3>Plant Teachers</h3>
+                <p>Sacred plants that guide us to deeper understanding</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sacred Garden section -->
+    <section class="section" id="garden">
+        <h2>Sacred Garden</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Medicinal Plants</h3>
+                <p>Growing and working with healing herbs</p>
+            </div>
+            <div class="card">
+                <h3>Moon Gardening</h3>
+                <p>Aligning your garden with lunar cycles</p>
+            </div>
+            <div class="card">
+                <h3>Sacred Space</h3>
+                <p>Creating your own spiritual garden sanctuary</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community section -->
+    <section class="section" id="community">
+        <h2>Join Our Community</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Events</h3>
+                <p>Group meditations and garden workshops</p>
+            </div>
+            <div class="card">
+                <h3>Share Wisdom</h3>
+                <p>Exchange knowledge with fellow earth guardians</p>
+            </div>
+            <div class="card">
+                <h3>Local Circles</h3>
+                <p>Find spiritual gardeners in your area</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer section -->
+    <footer class="section">
+        <p>Connect with the spirits of nature and join our growing community</p>
+    </footer>
+</body>
+</html>
