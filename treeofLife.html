@@ -1,23 +1,705 @@
-    <!-- Contact section -->
-    <section class="section" id="contact">
-        <h2>Contact Us</h2>
-        <div class="contact-form">
-            <form action="#" method="POST">
-                <div class="form-container">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message:</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Send Message</button>
-                </div>
-            </form>
+<!DOCTYPE html> <!-- Tells the browser this is an HTML5 document -->
+<html lang="en"> <!-- Start of HTML document, set to English language -->
+<head>
+    <!-- Basic settings for the webpage -->
+    <meta charset="UTF-8"> <!-- Ensures proper text encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page mobile-friendly -->
+    <title>Natural Spirits & Garden Wisdom</title> <!-- Sets the browser tab title -->
+    <style>
+        /* CSS Styles start here. CSS controls how the page looks */
+        
+        /* Reset default browser styles for consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Main text and background settings for the whole page */
+        body {
+            font-family: 'Open Sans', sans-serif; /* Sets the font type */
+            line-height: 1.6; /* Controls line spacing */
+            background-color: #f0f2eb; /* Changed from #f4f1ea to a softer sage green */
+            color: #2d3c35; /* Changed from #2c3e50 to a deep forest green */
+        }
+
+        /* Hero image section at the top of the page */
+        .header {
+            /* Creates a dark overlay on top of the background image */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/forest-spirit.jpg');
+            background-size: cover; /* Makes image cover the whole area */
+            height: 100vh; /* Makes header full screen height */
+            /* Centers content both vertically and horizontally */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        /* Navigation bar styling */
+        .nav {
+            position: fixed; /* Keeps nav bar stuck to top of screen */
+            width: 100%;
+            padding: 1rem; /* Adds space inside the nav bar */
+            background-color: rgba(255,255,255,0.9); /* Semi-transparent white background */
+        }
+
+        /* Navigation menu list styling */
+        .nav ul {
+            display: flex; /* Makes menu items horizontal */
+            justify-content: center; /* Centers menu items */
+            list-style: none; /* Removes bullet points */
+        }
+
+        /* Individual menu items */
+        .nav ul li {
+            margin: 0 1.5rem; /* Adds space between menu items */
+        }
+
+        /* Menu link styling */
+        .nav a {
+            color: #2d3c35; /* Changed from #2c3e50 to match body text color */
+            text-decoration: none; /* Removes underline from links */
+            font-weight: 600; /* Makes text slightly bold */
+        }
+
+        /* Main content section styling */
+        .section {
+            padding: 5rem 2rem; /* Adds space around sections */
+            max-width: 1200px; /* Limits width on large screens */
+            margin: 0 auto; /* Centers content horizontally */
+        }
+
+        /* Card grid layout */
+        .grid {
+            display: grid;
+            /* Creates responsive columns that adjust based on screen size */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; /* Adds space between grid items */
+            margin-top: 2rem;
+        }
+
+        /* Individual card styling */
+        .card {
+            background: #fdfbf7; /* Changed from white to a very light cream */
+            padding: 2rem;
+            border-radius: 30px 15px 45px 15px;
+            box-shadow: 0 2px 5px rgba(45, 60, 53, 0.1); /* Updated shadow to be more natural */
+            border: 1px solid var(--moss-green);
+        }
+
+        /* Optional: Add subtle hover effect */
+        .card:hover {
+            background: #ffffff;
+            box-shadow: 0 4px 8px rgba(45, 60, 53, 0.15);
+        }
+
+        /* Mobile-friendly adjustments */
+        @media (max-width: 768px) {
+            /* When screen is smaller than 768px */
+            .nav ul {
+                flex-direction: column; /* Stacks menu items vertically */
+                align-items: center;
+            }
+            
+            .nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+
+        :root {
+            /* Earthy, natural color variables */
+            --leaf-green: #4a6741;
+            --moss-green: #8b9e83;
+            --deep-forest: #2d3c35;
+            --sage-light: #f0f2eb;
+            --cream: #fdfbf7;
+            --earth-brown: #584539;
+            --stone-gray: #8e8e8e;
+            --sunlight: #f9efc7;
+            --forest-shadow: #2c392f;
+            --morning-mist: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Gentle swaying animation for plants/trees */
+        @keyframes gentleSway {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(2deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* Floating leaves animation */
+        @keyframes floatingLeaves {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        /* Apply to decorative elements */
+        .leaf-decoration {
+            animation: floatingLeaves 8s infinite ease-in-out;
+        }
+
+        /* Leaf-shaped buttons */
+        .nature-button {
+            clip-path: path('M50,0 C70,0 100,30 100,50 C100,70 70,100 50,100 C30,100 0,70 0,50 C0,30 30,0 50,0');
+            background: var(--leaf-green);
+            transition: all 0.3s ease;
+        }
+
+        /* Add these styles to your CSS */
+        .contact-form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(45, 60, 53, 0.1);
+        }
+
+        .form-container {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2d3c35;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #8b9e83;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a6741;
+            box-shadow: 0 0 0 2px rgba(74, 103, 65, 0.2);
+        }
+
+        /* Contact Section Styles */
+        #contact {
+            background-color: var(--sage-light);
+            padding: 5rem 2rem;
+        }
+
+        .contact-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #contact h2 {
+            text-align: center;
+            color: var(--deep-forest);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            background: var(--cream);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Info Styles */
+        .contact-info {
+            background: var(--leaf-green);
+            color: var(--cream);
+            padding: 3rem 2rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .contact-details {
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Form Styles */
+        .contact-form {
+            padding: 3rem 2rem;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: var(--cream);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group label {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--deep-forest);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .form-group textarea ~ label {
+            top: 1rem;
+            transform: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--leaf-green);
+            background: var(--cream);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 103, 65, 0.1);
+        }
+
+        .form-group input:focus ~ label,
+        .form-group textarea:focus ~ label,
+        .form-group input:valid ~ label,
+        .form-group textarea:valid ~ label {
+            top: -0.5rem;
+            left: 0.8rem;
+            font-size: 0.8rem;
+            background: var(--cream);
+            padding: 0 0.5rem;
+            color: var(--leaf-green);
+        }
+
+        .submit-btn {
+            background: var(--leaf-green);
+            color: var(--cream);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--deep-forest);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(74, 103, 65, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                padding: 2rem;
+            }
+            
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+
+        /* Navigation Styles */
+        .nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Navigation background change on scroll */
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo a {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--leaf-green);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--deep-forest);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        /* Underline animation for nav links */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--leaf-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--leaf-green);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px; /* Rounded corners for pill shape */
+            border: none;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            gap: 0.5rem; /* Space between icon and text */
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #back-to-top i {
+            font-size: 0.8rem;
+        }
+
+        #back-to-top.visible {
+            display: flex;
+        }
+
+        #back-to-top:hover {
+            background: var(--deep-forest);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Header/Hero Section */
+        .header {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%; /* Extra height for parallax effect */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('images/forest-spirit.jpg');
+            background-size: cover;
+            background-position: center;
+            transform: translateZ(0);
+        }
+
+        .header-content {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            padding: 1rem 2rem;
+            background: var(--sage-light);
+        }
+
+        .breadcrumbs ul {
+            max-width: 1200px;
+            margin: 0 auto;
+            list-style: none;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .breadcrumbs li:not(:last-child)::after {
+            content: '/';
+            margin-left: 0.5rem;
+            color: var(--moss-green);
+        }
+    </style>
+</head>
+<body> <!-- The visible content of the webpage starts here -->
+    <!-- Add this right after your opening <body> tag -->
+    <button id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+        <span>Back to Top</span>
+    </button>
+
+    <!-- Navigation Menu -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#home">Natural Spirits</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#spirits">Nature Spirits</a></li>
+                <li><a href="#garden">Sacred Garden</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#wisdom">Ancient Wisdom</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero section with background image -->
+    <header class="header" id="home">
+        <div class="parallax-bg"></div>
+        <div class="header-content">
+            <h1>Connect with Nature's Spirit</h1>
+            <p>Discover the ancient wisdom of earth spirits and sacred gardening</p>
+        </div>
+    </header>
+
+    <!-- Content sections with cards -->
+    <section class="section" id="spirits">
+        <h2>Nature Spirits</h2>
+        <div class="grid"> <!-- Grid layout for cards -->
+            <div class="card">
+                <h3>Tree Spirits</h3>
+                <p>Ancient guardians of the forest, connecting earth and sky</p>
+            </div>
+            <div class="card">
+                <h3>Mother Earth</h3>
+                <p>The divine feminine energy that nurtures all life</p>
+            </div>
+            <div class="card">
+                <h3>Plant Teachers</h3>
+                <p>Sacred plants that guide us to deeper understanding</p>
+            </div>
         </div>
     </section>
+
+    <!-- Sacred Garden section -->
+    <section class="section" id="garden">
+        <h2>Sacred Garden</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Medicinal Plants</h3>
+                <p>Growing and working with healing herbs</p>
+            </div>
+            <div class="card">
+                <h3>Moon Gardening</h3>
+                <p>Aligning your garden with lunar cycles</p>
+            </div>
+            <div class="card">
+                <h3>Sacred Space</h3>
+                <p>Creating your own spiritual garden sanctuary</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community section -->
+    <section class="section" id="community">
+        <h2>Join Our Community</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Events</h3>
+                <p>Group meditations and garden workshops</p>
+            </div>
+            <div class="card">
+                <h3>Share Wisdom</h3>
+                <p>Exchange knowledge with fellow earth guardians</p>
+            </div>
+            <div class="card">
+                <h3>Local Circles</h3>
+                <p>Find spiritual gardeners in your area</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Ancient Wisdom section -->
+    <section class="section" id="getinvolved">
+        <h2>Get Involved</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>This week in your local area</h3>
+                <p>Group meditations and garden workshops</p>
+            </div>
+            <div class="card">
+                <h3>Share Wisdom</h3>
+                <p>Exchange knowledge with fellow earth guardians</p>
+            </div>
+            <div class="card">
+                <h3>Local Circles</h3>
+                <p>Find spiritual gardeners in your area</p>
+            </div>
+        </div>
+    </section>
+    <!-- Contact section -->
+    <section class="section" id="contact">
+        <div class="contact-wrapper">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <!-- Contact Info Side -->
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Have questions about nature spirits or sacred gardening? We'd love to hear from you.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Spirit Garden Lane, Nature Valley</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@naturalspirits.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(555) 123-4567</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form Side -->
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Your Email</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer section -->
+    <footer class="section">
+        <p>Connect with the spirits of nature and join our growing community</p>
+    </footer>
+
+    <!-- Add this script at the end of your body tag -->
+    <script>
+    // Scroll-based navigation changes
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('.nav');
+        const backToTop = document.getElementById('back-to-top');
+        
+        // Nav background change
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+        
+        // Back to top button visibility
+        if (window.scrollY > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+
+    // Parallax effect for header
+    window.addEventListener('scroll', function() {
+        const parallax = document.querySelector('.parallax-bg');
+        let scrollPosition = window.pageYOffset;
+        parallax.style.transform = 'translateY(' + (scrollPosition * 0.5) + 'px)';
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+
+    // Back to top functionality
+    document.getElementById('back-to-top').addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    </script>
+</body>
+</html>
